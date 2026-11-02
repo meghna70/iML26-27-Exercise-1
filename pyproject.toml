@@ -1,0 +1,32 @@
+[build-system]
+requires      = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name            = "iml-interpretability"
+version         = "0.1.0"
+description     = "iML 26/27 Exercise 1: quantifying the interpretability of inherently interpretable models"
+readme          = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.0",
+    "scikit-learn>=1.4",
+    "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["iml_interpretability"]
+
+# Recommended (not enforced) code style, see README.md.
+[tool.ruff]
+target-version = "py310"
+line-length    = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
