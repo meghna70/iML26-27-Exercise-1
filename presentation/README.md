@@ -6,7 +6,7 @@ strongly suggest you do not use AI-generated slides.
 Your slides should cover:
 
 - your interpretability metric: definition and motivation
-- your results across models and datasets, and the threshold of interpretability you found
+- your  results across models and datasets, and the threshold of interpretability you found
 - for an LLM-based metric: evidence that its scores agree with human judgments
 - for the 2-point task: how dataset meta-features relate to interpretability
 
