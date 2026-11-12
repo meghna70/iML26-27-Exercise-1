@@ -9,7 +9,7 @@ the deadline it should describe your approach, how to reproduce your results, an
 
 ## Tasks
 
-### Task 1 (1  point): An interpretability metric
+### Task 1 (1  point):   An interpretability metric
 
 Develop a metric that quantifies model interpretability. It has to work within one model class,
 e.g. for decision trees, random forests and gradient-boosted trees. Then evaluate a few
