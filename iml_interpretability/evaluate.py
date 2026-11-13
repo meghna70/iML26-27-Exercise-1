@@ -4,10 +4,12 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 
+from numpy import isin
 import pandas as pd
 from sklearn.base import ClassifierMixin, clone
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
 
 from iml_interpretability.data import Dataset
 from iml_interpretability.metric import InterpretabilityMetric
@@ -45,6 +47,18 @@ def evaluate(
                 "model": model_name,
                 "accuracy": accuracy_score(y_test, fitted.predict(X_test)),
             }
+
+            if isinstance(fitted, DecisionTreeClassifier):
+                tree= fitted.tree_
+                row.update({
+                    "tree_depth": fitted.get_depth(),
+                    "number_of_leaves": fitted.get_n_leaves(),
+                    "number_of_nodes": tree.node_count,
+                    "number_of_features_used": len(
+                        set(tree.feature[tree.feature >= 0])
+                    ),
+                })
+
             for metric in metrics:
                 row[metric.name] = metric.score(fitted, train)
             rows.append(row)

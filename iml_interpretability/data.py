@@ -11,8 +11,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 import pandas as pd
-from sklearn.datasets import fetch_openml
-
+from sklearn.datasets import load_breast_cancer, load_digits, load_iris, load_wine
 # OpenML downloads are cached here, relative to the current working directory.
 DATA_HOME = Path("data")
 
@@ -35,15 +34,10 @@ class Dataset:
         return list(self.X.columns)
 
 
-# Columns that leak the target (boat = lifeboat, body = body identification number) or are
-# free-text identifiers without a meaningful encoding.
-_TITANIC_DROP_COLUMNS = ["boat", "body", "home.dest", "name", "ticket", "cabin"]
 
 
-def load_titanic(data_home: str | Path = DATA_HOME) -> Dataset:
-    """Load the Titanic dataset from OpenML (data id 40945).
-
-    The download is cached in ``data_home``, so network access is only needed on the first call.
+def load_dataset(data_home: str | Path = DATA_HOME) -> Dataset:
+    """Load the Breast Cancer dataset.
 
     :param data_home: Cache directory for the download, relative paths are resolved against the
         current working directory.
@@ -51,12 +45,40 @@ def load_titanic(data_home: str | Path = DATA_HOME) -> Dataset:
     :rtype: Dataset
     """
     # The default pandas ARFF parser crashes on Titanic's integer-valued categorical columns.
-    bunch = fetch_openml("titanic", version=1, as_frame=True, parser="liac-arff", data_home=data_home)
-    X = bunch.data.drop(columns=_TITANIC_DROP_COLUMNS)
-    y = bunch.target.astype(int).rename("survived")
+    bunch = load_breast_cancer(as_frame=True)
+    X = bunch.data
+    y = bunch.target.rename("diagnosis")
 
-    numeric_columns = X.select_dtypes(include="number").columns
-    X[numeric_columns] = X[numeric_columns].fillna(X[numeric_columns].median())
-    X = pd.get_dummies(X, drop_first=True, dtype=float)
+    return Dataset(name="breast_cancer", X=X, y=y)
 
-    return Dataset(name="titanic", X=X, y=y)
+def load_digits_dataset() -> Dataset:
+    """Load the handwritten digits classification dataset."""
+    bunch = load_digits(as_frame=True)
+
+    return Dataset(
+        name="digits",
+        X=bunch.data,
+        y=bunch.target.rename("digit"),
+    )
+
+def load_iris_dataset() -> Dataset:
+    """Load the Iris classification dataset."""
+    bunch = load_iris(as_frame=True)
+
+    return Dataset(
+        name="iris",
+        X=bunch.data,
+        y=bunch.target.rename("species"),
+    )
+
+def load_wine_dataset() -> Dataset:
+    """Load the Wine classification dataset."""
+    bunch = load_wine(as_frame=True)
+
+    return Dataset(
+        name="wine",
+        X=bunch.data,
+        y=bunch.target.rename("wine_type"),
+    )
+      
+    
