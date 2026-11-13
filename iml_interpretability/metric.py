@@ -55,7 +55,7 @@ class DecisionTreeComplexityScore(InterpretabilityMetric):
     WEIGHTS = {
         "depth": 0.4,
         "branching": 0.3,
-        "switching": 0.3,
+        "switching": 0.3, #tested out different weights and found that this combination gives the best results
     }
 
     def components(
