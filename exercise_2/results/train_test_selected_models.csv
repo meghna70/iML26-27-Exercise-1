@@ -1,0 +1,19 @@
+dataset,model,level,config,train,test,gap
+Pima Diabetes,Decision Tree,Underfit,{'max_depth': 1},0.7208938120702826,0.6525925925925925,0.06830121947769008
+Pima Diabetes,Decision Tree,Good fit,{'max_depth': 3},0.8496103896103896,0.7922633744855967,0.0573470151247929
+Pima Diabetes,Decision Tree,Overfit,{'max_depth': None},1.0,0.6520987654320989,0.3479012345679011
+Pima Diabetes,Gradient Boosting,Underfit,"{'n_estimators': 5, 'max_depth': 1, 'learning_rate': 0.05}",0.7378915202444614,0.6725925925925925,0.06529892765186884
+Pima Diabetes,Gradient Boosting,Good fit,"{'n_estimators': 100, 'max_depth': 2, 'learning_rate': 0.1}",0.9466386554621848,0.8246090534979423,0.1220296019642425
+Pima Diabetes,Gradient Boosting,Overfit,"{'n_estimators': 300, 'max_depth': 8, 'learning_rate': 0.3}",1.0,0.7987654320987655,0.2012345679012345
+German Credit,Decision Tree,Underfit,{'max_depth': 1},0.6727891156462585,0.6698412698412699,0.002947845804988636
+German Credit,Decision Tree,Good fit,{'max_depth': 2},0.7310301263362488,0.693068783068783,0.03796134326746581
+German Credit,Decision Tree,Overfit,{'max_depth': None},1.0,0.6206349206349207,0.37936507936507935
+German Credit,Gradient Boosting,Underfit,"{'n_estimators': 5, 'max_depth': 1, 'learning_rate': 0.05}",0.6727891156462585,0.6698412698412699,0.002947845804988636
+German Credit,Gradient Boosting,Good fit,"{'n_estimators': 100, 'max_depth': 2, 'learning_rate': 0.1}",0.9132312925170067,0.7887566137566138,0.12447467876039298
+German Credit,Gradient Boosting,Overfit,"{'n_estimators': 300, 'max_depth': 8, 'learning_rate': 0.3}",1.0,0.7513756613756615,0.24862433862433853
+California Housing,Decision Tree,Underfit,{'max_depth': 1},0.30703786329158456,0.28775643871793455,0.019281424573650008
+California Housing,Decision Tree,Good fit,{'max_depth': 8},0.8003973183929025,0.6176281666664432,0.18276915172645936
+California Housing,Decision Tree,Overfit,{'max_depth': None},1.0,0.5130779278721067,0.4869220721278933
+California Housing,Gradient Boosting,Underfit,"{'n_estimators': 5, 'max_depth': 1, 'learning_rate': 0.05}",0.12809553832376697,0.12283101448265299,0.005264523841113977
+California Housing,Gradient Boosting,Good fit,"{'n_estimators': 300, 'max_depth': 5, 'learning_rate': 0.2}",0.9821892309681491,0.8128264703216924,0.16936276064645672
+California Housing,Gradient Boosting,Overfit,"{'n_estimators': 300, 'max_depth': 8, 'learning_rate': 0.3}",0.9999826588548181,0.7741368037991045,0.22584585505571353
